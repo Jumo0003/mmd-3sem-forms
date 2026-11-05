@@ -15,12 +15,11 @@ const response = await fetch('https://dummyjson.com/recipes/addd', {
 });
 if (!response.ok)
 throw new Error (`Response status: ${response.status}`);
- console.log("Success:", response);
-}
+ 
 
-catch (error) {
-     console.error("Error:", error);
-}
-
+    console.log(`Response status: ${response.status}`);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 export default postRecipe; 
