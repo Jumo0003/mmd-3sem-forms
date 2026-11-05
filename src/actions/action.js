@@ -14,7 +14,7 @@ const response = await fetch('https://dummyjson.com/recipes/addd', {
   }),
 });
 if (!response.ok)
-throw new Error
+throw new Error (`Response status: ${response.status}`);
  console.log("Success:", response);
 }
 
