@@ -2,9 +2,23 @@
 import postRecipe from "@/actions/action"; 
 import { useActionState } from "react";
 import { success } from "zod";
+import { useState, useEffect } from "react";
 
 const RecipeForm = () => {
-const [formField,setFormFields]
+const [formFields,setFormFields]  = useState({ recipename: "" });
+
+useEffect(() => {
+
+})
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormFields((currentFields) => ({
+      ...currentFields,
+      [name]: value,
+    }));
+  }
 
    const [state, postRecipeAction, isPending] = useActionState(postRecipe, {
   success: null,
@@ -13,17 +27,17 @@ const [formField,setFormFields]
 
     return (
     <>
-      <form action={postRecipeAction}>
+        <form action={postRecipeAction}>
         <input
           type="text"
           name="recipename"
+          value={formFields.recipename}
           placeholder="Opskriftens titel"
           className="border"
-          defaultValue=""
+          onChange={handleChange}
         />
         <button type="submit" className="border">
-        {isPending ? "submitting" : "Opret opskrift"}
-       
+          {isPending ? "submitting" : "Opret opskrift"}
         </button>
       </form>
 
